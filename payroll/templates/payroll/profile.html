@@ -1,0 +1,77 @@
+{% extends "payroll/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+      <div class="media">
+        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+        <div class="media-body">
+          <h2 class="account-heading">{{ name }}</h2>
+          <p class="text-secondary">Username : {{ user.username }}</p>
+          <p class="text-secondary">Email : {{ user.email }}</p>
+        </div>
+      </div>
+    </div>
+   
+    <article class="media content-section">
+        <div class="media-body">
+          <div class="article-metadata">
+            <h5 class="mr-2" href="#">Staff details</h5>
+          </div>
+          <p>Employee Id : {{ empid }}</p>
+          <p>Designation : {{ designation }}</p>
+          <p>Contact Number : {{ phone }}</p>
+        </div>
+      </article>
+      <article class="media content-section">
+        <div class="media-body">
+          <div class="article-metadata">
+            <h5 class="mr-2">Daily Duty Schedule for {{ schedule_month }}</h5>
+          </div>
+          <p>Time in : {{ schedule_time_in }}</p>
+          <p>Time out : {{ schedule_time_out }}</p>
+        </div>
+      </article>
+      <div class="content-section">
+        <p class="text-secondary">Update Profile Picture</p>
+          <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4"></legend>
+                {{ p_form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Update</button>
+            </div>  
+      </div>
+      <article class="media content-section">
+        <div class="media-body">
+          <div class="article-metadata">
+            <p class="text-secondary">Delete Account</p>
+          </div>
+          <p>Perform this action only if you no longer belong to this organisation</p>
+          <a href="{% url 'confirmdelete' %}"><button type = "button" class="btn btn-outline-danger">Delete my account</button></a>
+        </div>
+      </article>
+      
+{% endblock content %}
+
+{% block head %}
+<div class="content-section">
+  <h3 style="justify-content: center;">Announcements</h3>
+  {% block anmts %}
+  <ul class="list-group">
+  {% for i in announcements %}                
+  <li class="list-group-item list-group-item-light">
+    <div>
+      <h5>{{i.content}}</h5>
+      {{i.getdate}}
+    </div>
+  </li>
+  {% endfor %}
+  
+  
+</ul>
+{% endblock anmts %}
+
+</div>
+{% endblock head %}

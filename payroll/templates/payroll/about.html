@@ -1,0 +1,39 @@
+{% extends "payroll/base.html" %}
+{% block content %}
+    <h1></h1>
+    <article class="media content-section">
+      <div class="media-body">
+        <div class="article-metadata">
+          <h3 class="mr-2" href="#">About this Web App</h3>
+        </div>
+        <p>This is a simple DBMS project on a Payroll Management System where employees can check their profile, attendance, leaves taken, salary, deductions, etc.</p>
+        <p>Framework used : Django.</p>
+        <p>Database has been implemented using sqlite3.</p>
+        <p>FrontEnd has been developed using html, css and bootstrap.</p>
+        
+      </div>
+    </article>
+{% endblock content %}
+
+{% block head %}
+<div class="content-section">
+  <h3 style="justify-content: center;">Announcements</h3>
+  {% block anmts %}
+  <ul class="list-group">
+  {% for i in announcements %}                
+  <li class="list-group-item list-group-item-light">
+    <div>
+      <h5>{{i.content}}</h5>
+      {{i.getdate}}
+    </div>
+  </li>
+  {% endfor %}
+  <!-- <li class="list-group-item list-group-item-light">Calendars</li> -->
+  
+</ul>
+{% endblock anmts %}
+
+</div>
+{% endblock head %}
+
+

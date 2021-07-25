@@ -1,0 +1,50 @@
+{% extends "payroll/base.html" %}
+{% block content %}
+
+    
+    <article class="media content-section">
+        <div class="media-body">
+        <h5 class="mr-2">Monthly Leave and Attendance</h5>
+        </div>
+    </article>
+    <article class="media content-section">
+        <div class="media-body">
+        <div class="article-metadata">
+            <h5 class="mr-2">Attendance Details</h5>
+        </div>
+        <p>No of days present : {{ attendance }}</p>
+        <p>Total working days : {{ workingdays }}</p>
+        </div>
+      </article>
+      <article class="media content-section">
+        <div class="media-body">
+        <div class="article-metadata">
+            <h5 class="mr-2">Leave Details</h5>
+        </div>
+        <p>No of days taken : {{ myleave }}</p>
+        <p>Leave reason : {{ leavereason }}</p>
+        </div>
+      </article>
+{% endblock content %}
+
+
+{% block head %}
+<div class="content-section">
+  <h3 style="justify-content: center;">Announcements</h3>
+  {% block anmts %}
+  <ul class="list-group">
+  {% for i in announcements %}                
+  <li class="list-group-item list-group-item-light">
+    <div>
+      <h5>{{i.content}}</h5>
+      {{i.getdate}}
+    </div>
+  </li>
+  {% endfor %}
+  
+  
+</ul>
+{% endblock anmts %}
+
+</div>
+{% endblock head %}
